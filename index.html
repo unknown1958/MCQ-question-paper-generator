@@ -1,0 +1,579 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GATE Prep â€” Professional Question Paper Generator</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- CSS Styles -->
+  <link rel="stylesheet" href="index.css">
+  <!-- jsPDF & html2canvas for PDF Generation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+<body class="dark-theme">
+  <!-- Dynamic Ambient Glows for Sidebar Dashboard -->
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
+
+  <div class="app-container">
+    <!-- LEFT PANEL: CONTROLS & MANAGEMENT -->
+    <aside class="sidebar-panel">
+      <!-- App Header -->
+      <header class="app-header">
+        <div class="brand">
+          <div class="brand-icon">
+            <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2.5" fill="none"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+          </div>
+          <h1>GATE Paper Craft</h1>
+        </div>
+        <button class="theme-toggle-btn" id="theme-toggle-btn" title="Toggle Theme">
+          <svg class="sun-icon" viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+          <svg class="moon-icon" viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        </button>
+      </header>
+
+      <!-- Sidebar Tabs Navigation -->
+      <nav class="sidebar-tabs">
+        <button class="tab-btn active" data-tab="tab-details" id="btn-tab-details">
+          <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+          Headers
+        </button>
+        <button class="tab-btn" data-tab="tab-settings" id="btn-tab-settings">
+          <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+          Layout
+        </button>
+        <button class="tab-btn" data-tab="tab-questions" id="btn-tab-questions">
+          <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
+          Questions (<span id="tab-questions-count">0</span>)
+        </button>
+      </nav>
+
+      <!-- Scrollable Controls Content -->
+      <div class="sidebar-content">
+        <!-- TAB 1: DETAILS / HEADERS -->
+        <div class="tab-pane active" id="tab-details">
+          <section class="control-section">
+            <h3>Exam Information</h3>
+            <div class="input-group">
+              <label for="exam-title">Exam Title / Header</label>
+              <input type="text" id="exam-title" value="GATE Practice Mock Examination">
+            </div>
+            <div class="form-row">
+              <div class="input-group">
+                <label for="subject-name">Subject / Discipline</label>
+                <input type="text" id="subject-name" value="Computer Science & Information Technology">
+              </div>
+              <div class="input-group">
+                <label for="subject-code">Paper Code</label>
+                <input type="text" id="subject-code" value="CS">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="input-group">
+                <label for="duration-mins">Duration (Minutes)</label>
+                <input type="number" id="duration-mins" value="180" min="10" max="600">
+              </div>
+              <div class="input-group">
+                <label for="total-marks">Max Marks</label>
+                <input type="number" id="total-marks" value="100" min="1" max="500">
+              </div>
+            </div>
+            <div class="input-group">
+              <label for="inst-name">Organizing Institute (Optional)</label>
+              <input type="text" id="inst-name" value="National Coordination Committee for GATE">
+            </div>
+          </section>
+
+          <section class="control-section">
+            <h3>General Instructions</h3>
+            <p class="section-desc">Instructions listed at the beginning of the first page.</p>
+            <div class="input-group">
+              <textarea id="instructions-text" rows="8" placeholder="Enter instructions, one per line.">1. This question paper contains 2 sections: General Aptitude (GA) and Core Subject.
+2. Questions carry 1 Mark or 2 Marks each.
+3. For MCQ questions, a negative marking of 1/3 marks for 1-mark and 2/3 marks for 2-mark questions applies.
+4. There is no negative marking for MSQ and NAT questions.
+5. Calculators are permitted in virtual mode. Physical calculators are banned.</textarea>
+            </div>
+          </section>
+        </div>
+
+        <!-- TAB 2: LAYOUT & AUTO-FIT -->
+        <div class="tab-pane" id="tab-settings">
+          <section class="control-section">
+            <h3>Sheet Management</h3>
+            <div class="budget-panel">
+              <div class="input-group">
+                <label for="target-sheets">Number of Pages</label>
+                <div class="counter-input">
+                  <button type="button" class="btn-count" id="btn-dec-sheets">-</button>
+                  <input type="number" id="target-sheets" value="2" min="1" max="10">
+                  <button type="button" class="btn-count" id="btn-inc-sheets">+</button>
+                </div>
+                <p class="section-desc">Select the exact number of pages for this exam paper.</p>
+              </div>
+              <div class="input-group checkbox-row" style="margin-bottom: 14px;">
+                <input type="checkbox" id="autofit-active" checked>
+                <label for="autofit-active">Auto-adjust layout to fit pages</label>
+              </div>
+              <button class="autofit-btn" id="autofit-btn">
+                <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"></path></svg>
+                Force Optimize Layout Now
+              </button>
+            </div>
+          </section>
+
+          <section class="control-section">
+            <h3>Layout Options</h3>
+            <div class="input-group">
+              <label>Column Structure</label>
+              <div class="toggle-group select-columns">
+                <button type="button" class="toggle-btn active" data-val="1">Single Column</button>
+                <button type="button" class="toggle-btn" data-val="2">Double Column (Official)</button>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="input-group">
+                <label for="font-size">Font Size (pt)</label>
+                <select id="font-size">
+                  <option value="7">7pt (Ultra Compact)</option>
+                  <option value="7.5">7.5pt (Extra Tiny)</option>
+                  <option value="8">8pt (Very Tiny)</option>
+                  <option value="8.5">8.5pt (Tiny)</option>
+                  <option value="9">9pt</option>
+                  <option value="9.5">9.5pt</option>
+                  <option value="10" selected>10pt (Standard)</option>
+                  <option value="10.5">10.5pt</option>
+                  <option value="11">11pt</option>
+                  <option value="12">12pt (Large)</option>
+                </select>
+              </div>
+              <div class="input-group">
+                <label for="margins-size">Page Margins</label>
+                <select id="margins-size">
+                  <option value="compact">Compact (10mm)</option>
+                  <option value="normal" selected>Normal (15mm)</option>
+                  <option value="wide">Wide (20mm)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="input-group">
+                <label for="question-spacing">Question Spacing</label>
+                <select id="question-spacing">
+                  <option value="compact">Compact (8px)</option>
+                  <option value="normal" selected>Normal (15px)</option>
+                  <option value="spacious">Spacious (22px)</option>
+                </select>
+              </div>
+              <div class="input-group">
+                <label for="paper-theme">Styling Theme</label>
+                <select id="paper-theme">
+                  <option value="theme-official-mono">Official Monochrome</option>
+                  <option value="theme-navy">Classic Navy</option>
+                  <option value="theme-emerald">Academic Emerald</option>
+                </select>
+              </div>
+            </div>
+          </section>
+
+          <section class="control-section">
+            <h3>Watermark & Extra Details</h3>
+            <div class="input-group checkbox-row">
+              <input type="checkbox" id="show-watermark" checked>
+              <label for="show-watermark">Display Watermark</label>
+            </div>
+            <div class="input-group" id="watermark-text-group">
+              <label for="watermark-text">Watermark Text</label>
+              <input type="text" id="watermark-text" value="GATE PREPARATION">
+            </div>
+            <div class="input-group checkbox-row" style="display: none;">
+              <input type="checkbox" id="show-anskey">
+              <label for="show-anskey">Append Answer Key at the end</label>
+            </div>
+            <div class="input-group checkbox-row">
+              <input type="checkbox" id="show-marks" checked>
+              <label for="show-marks">Show marks next to questions</label>
+            </div>
+          </section>
+
+          <section class="control-section">
+            <h3>Header Display Options</h3>
+            <p class="section-desc">Toggle which fields appear on the exam paper header.</p>
+            <div class="checkbox-grid">
+              <div class="input-group checkbox-row">
+                <input type="checkbox" id="show-subject" checked>
+                <label for="show-subject">Subject / Discipline</label>
+              </div>
+              <div class="input-group checkbox-row">
+                <input type="checkbox" id="show-paper-code" checked>
+                <label for="show-paper-code">Paper Code</label>
+              </div>
+              <div class="input-group checkbox-row">
+                <input type="checkbox" id="show-duration" checked>
+                <label for="show-duration">Duration</label>
+              </div>
+              <div class="input-group checkbox-row">
+                <input type="checkbox" id="show-max-marks" checked>
+                <label for="show-max-marks">Maximum Marks</label>
+              </div>
+              <div class="input-group checkbox-row">
+                <input type="checkbox" id="show-candidate-name" checked>
+                <label for="show-candidate-name">Candidate Name field</label>
+              </div>
+              <div class="input-group checkbox-row">
+                <input type="checkbox" id="show-roll-number" checked>
+                <label for="show-roll-number">Roll Number field</label>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <!-- TAB 3: QUESTIONS LIST -->
+        <div class="tab-pane" id="tab-questions">
+          <!-- Preset/Sample Loader -->
+          <div class="preset-loader-box">
+            <label for="preset-select">Load Preset Questions</label>
+            <div class="select-row">
+              <select id="preset-select">
+                <option value="" disabled selected>Select a Mock Test...</option>
+                <option value="preset-os">GATE OS â€” Processes & Creation (User Mock)</option>
+                <option value="preset-cs">GATE CS â€” Discrete Math & Data Structures</option>
+                <option value="preset-ga">GATE GA â€” General Aptitude Mock</option>
+                <option value="preset-mixed">GATE Mixed â€” CS & Math Mock</option>
+              </select>
+              <button class="action-btn secondary-btn" id="btn-load-preset">Load</button>
+            </div>
+          </div>
+
+          <div class="question-list-header">
+            <h4>Question Bank</h4>
+            <div style="display: flex; gap: 6px;">
+              <button class="action-btn secondary-btn compact-btn" id="btn-bulk-import">Bulk Import</button>
+              <button class="action-btn ai-generate-btn compact-btn" id="btn-ai-generate">
+                <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>
+                AI Generate
+              </button>
+              <button class="action-btn primary-btn compact-btn" id="btn-new-question">
+                <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2.5" fill="none"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                Add Question
+              </button>
+            </div>
+          </div>
+
+          <!-- Dynamic Questions List -->
+          <div class="questions-accordion" id="questions-list-container">
+            <!-- Populated via JS -->
+            <div class="empty-questions-state">
+              <p>No questions added yet.</p>
+              <p class="subtext">Use "Add Question" or load a preset mock test above to get started.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sidebar Footer / Actions -->
+      <footer class="sidebar-footer">
+        <div class="status-summary">
+          <div class="status-badge" id="budget-status-badge">
+            <span class="status-dot"></span>
+            <span id="budget-status-text">Pages: Calculating...</span>
+          </div>
+          <div class="stats-text" id="paper-stats-text">0 Questions Â· 0 Marks</div>
+        </div>
+        <div class="footer-actions">
+          <button class="action-btn secondary-btn" id="btn-print-native">
+            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+            Print
+          </button>
+          <button class="action-btn primary-btn download-pdf-btn" id="btn-download-pdf">
+            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg>
+            Download PDF
+          </button>
+        </div>
+      </footer>
+    </aside>
+
+    <!-- RIGHT PANEL: INTERACTIVE PRINT PREVIEW -->
+    <main class="preview-panel">
+      <header class="preview-header">
+        <h2>Live Print Preview</h2>
+        <div class="preview-info">
+          <span>A4 Format (210 Ã— 297mm)</span>
+          <span class="divider">|</span>
+          <span class="zoom-text">Scale: Fit-to-screen</span>
+        </div>
+      </header>
+
+      <!-- Scrollable Preview Area -->
+      <div class="preview-scroller" id="preview-scroller">
+        <div class="pages-wrapper" id="paper-pages-container">
+          <!-- Rendered virtual A4 pages go here -->
+          <div class="virtual-page-loader">
+            <div class="spinner"></div>
+            <p>Initializing Preview Engine...</p>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- MODAL: ADD / EDIT QUESTION -->
+  <div class="modal-overlay" id="question-modal">
+    <div class="modal-card">
+      <header class="modal-header">
+        <h3 id="modal-title-text">Add Question</h3>
+        <button class="btn-close-modal" id="btn-close-qmodal">&times;</button>
+      </header>
+      <form id="question-form">
+        <input type="hidden" id="edit-q-id">
+        <div class="form-row">
+          <div class="input-group">
+            <label for="q-type">Question Type</label>
+            <select id="q-type">
+              <option value="MCQ" selected>MCQ (Multiple Choice Question)</option>
+              <option value="MSQ">MSQ (Multiple Select Question)</option>
+              <option value="NAT">NAT (Numerical Answer Type)</option>
+              <option value="section">Section Divider Header</option>
+            </select>
+          </div>
+          <div class="input-group">
+            <label for="q-marks">Marks</label>
+            <select id="q-marks">
+              <option value="1">1 Mark</option>
+              <option value="2">2 Marks</option>
+            </select>
+          </div>
+          <div class="input-group">
+            <label for="q-negmarks">Negative Marks</label>
+            <select id="q-negmarks">
+              <option value="0">None (0)</option>
+              <option value="0.33">1/3 Mark (0.33)</option>
+              <option value="0.66">2/3 Mark (0.66)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label for="q-text">Question Text</label>
+          <p class="input-help">Use `^` for superscript (e.g. x^2), `_` for subscript (e.g. log_2). You can wrap code blocks in standard pre tags.</p>
+          <textarea id="q-text" rows="5" required placeholder="Write the question body here..."></textarea>
+        </div>
+
+        <!-- Options Container (Only for MCQ / MSQ) -->
+        <div id="options-inputs-container">
+          <div class="option-input-row">
+            <span class="opt-label">A</span>
+            <input type="text" id="q-opt-a" class="opt-text-input" placeholder="Option A value">
+          </div>
+          <div class="option-input-row">
+            <span class="opt-label">B</span>
+            <input type="text" id="q-opt-b" class="opt-text-input" placeholder="Option B value">
+          </div>
+          <div class="option-input-row">
+            <span class="opt-label">C</span>
+            <input type="text" id="q-opt-c" class="opt-text-input" placeholder="Option C value">
+          </div>
+          <div class="option-input-row">
+            <span class="opt-label">D</span>
+            <input type="text" id="q-opt-d" class="opt-text-input" placeholder="Option D value">
+          </div>
+        </div>
+
+        <!-- Hidden Answer & Explanation fields (no answer key required) -->
+        <div class="hidden-anskey-inputs" style="display: none;">
+          <!-- Correct Answer Inputs -->
+          <div class="input-group">
+            <label id="lbl-correct-ans">Correct Answer</label>
+            <!-- MCQ Select -->
+            <select id="correct-mcq" class="answer-selector">
+              <option value="A">A</option>
+              <option value="B">B</option>
+              <option value="C">C</option>
+              <option value="D">D</option>
+            </select>
+            <!-- MSQ Multi Checkbox -->
+            <div id="correct-msq" class="answer-selector checkbox-group hidden">
+              <label><input type="checkbox" value="A"> A</label>
+              <label><input type="checkbox" value="B"> B</label>
+              <label><input type="checkbox" value="C"> C</label>
+              <label><input type="checkbox" value="D"> D</label>
+            </div>
+            <!-- NAT Text Input -->
+            <div id="correct-nat" class="answer-selector hidden">
+              <input type="text" id="correct-nat-val" placeholder="e.g. 15 or 14.5 to 15.5">
+              <p class="input-help">Provide a single number or a range of correct values.</p>
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="q-explanation">Explanation / Solution (Optional)</label>
+            <textarea id="q-explanation" rows="3" placeholder="Provide step-by-step resolution details for the Answer Key..."></textarea>
+          </div>
+        </div>
+
+        <div class="modal-footer-actions">
+          <button type="button" class="action-btn secondary-btn" id="btn-cancel-qmodal">Cancel</button>
+          <button type="submit" class="action-btn primary-btn" id="btn-save-question">Save Question</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: BULK IMPORT -->
+  <div class="modal-overlay" id="bulk-modal">
+    <div class="modal-card" style="max-width: 650px;">
+      <header class="modal-header">
+        <h3>Bulk Import Questions</h3>
+        <button class="btn-close-modal" id="btn-close-bulkmodal">&times;</button>
+      </header>
+      <div class="modal-body-padding" style="padding: 20px; display: flex; flex-direction: column; gap: 12px;">
+        <p class="section-desc">Paste questions below. The parser will automatically extract questions starting with Q1., Q2., etc., along with their options (A, B, C, D). Non-question text between questions will be skipped.</p>
+        <textarea id="bulk-import-text" rows="14" placeholder="Example:
+Q1. What is the complexity of binary search?
+A) O(n)
+B) O(log n)
+C) O(n log n)
+D) O(1)" style="width:100%; background-color: var(--input-bg); border: 1px solid var(--input-border); color: var(--text-main); padding: 12px; border-radius: 8px; font-family: var(--font-mono); font-size: 0.85rem; resize: vertical; outline: none;"></textarea>
+        
+        <div class="modal-footer-actions">
+          <button type="button" class="action-btn secondary-btn" id="btn-cancel-bulkmodal">Cancel</button>
+          <button type="button" class="action-btn primary-btn" id="btn-parse-bulk">Parse & Import</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PDF GENERATION OVERLAY -->
+  <div class="loading-overlay" id="pdf-progress-overlay">
+    <div class="loading-card">
+      <div class="spinner large"></div>
+      <h3>Generating PDF...</h3>
+      <p id="pdf-progress-text">Rasterizing page layouts...</p>
+      <div class="progress-bar-container">
+        <div class="progress-bar-fill" id="pdf-progress-bar"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: AI QUESTION GENERATOR -->
+  <div class="modal-overlay" id="ai-modal">
+    <div class="modal-card ai-modal-card">
+      <header class="modal-header">
+        <div class="ai-modal-title">
+          <div class="ai-icon-badge">
+            <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>
+          </div>
+          <h3>AI Question Generator</h3>
+        </div>
+        <button class="btn-close-modal" id="btn-close-aimodal">&times;</button>
+      </header>
+
+      <div class="ai-modal-body">
+        <!-- API Key Section -->
+        <div class="ai-apikey-section">
+          <label for="ai-api-key">
+            <svg viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" stroke-width="2" fill="none"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"></path></svg>
+            Gemini API Key
+          </label>
+          <div class="ai-key-row">
+            <input type="password" id="ai-api-key" placeholder="Paste your Google Gemini API key here..." autocomplete="off">
+            <button type="button" class="btn-toggle-key" id="btn-toggle-key" title="Show/Hide Key">
+              <svg viewBox="0 0 24 24" width="15" height="15" stroke="currentColor" stroke-width="2" fill="none"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+            </button>
+          </div>
+          <p class="ai-key-hint">Get a free key at <a href="https://aistudio.google.com/app/apikey" target="_blank">aistudio.google.com</a>. Your key is saved locally and never sent anywhere except Google's API.</p>
+        </div>
+
+        <!-- Generation Config -->
+        <div class="ai-config-grid">
+          <div class="input-group" style="grid-column: 1 / -1;">
+            <label for="ai-model">Gemini Model</label>
+            <select id="ai-model">
+              <option value="gemini-2.0-flash-lite" selected>gemini-2.0-flash-lite (Free tier ✓ Recommended)</option>
+              <option value="gemini-2.5-flash-lite-preview-06-17">gemini-2.5-flash-lite (Free tier ✓ Newest)</option>
+              <option value="gemini-2.5-flash-preview-05-20">gemini-2.5-flash-preview (Free tier)</option>
+              <option value="gemini-2.0-flash">gemini-2.0-flash (Billing required)</option>
+              <option value="gemini-2.5-pro-preview-06-05">gemini-2.5-pro-preview (Billing required)</option>
+            </select>
+          </div>
+
+          <div class="input-group" style="grid-column: 1 / -1;">
+            <label for="ai-topic">Topic / Subject</label>
+            <input type="text" id="ai-topic" placeholder="e.g. Operating Systems â€” Process Scheduling, GATE CS â€” Graph Theory">
+          </div>
+
+          <div class="input-group">
+            <label for="ai-qtype">Question Type</label>
+            <select id="ai-qtype">
+              <option value="MCQ">MCQ (Multiple Choice)</option>
+              <option value="MSQ">MSQ (Multiple Select)</option>
+              <option value="NAT">NAT (Numerical Answer)</option>
+              <option value="Mixed">Mixed (MCQ + NAT)</option>
+            </select>
+          </div>
+
+          <div class="input-group">
+            <label for="ai-difficulty">Difficulty Level</label>
+            <select id="ai-difficulty">
+              <option value="Easy">Easy</option>
+              <option value="Medium" selected>Medium</option>
+              <option value="Hard">Hard</option>
+              <option value="Mixed">Mixed</option>
+            </select>
+          </div>
+
+          <div class="input-group">
+            <label for="ai-count">Number of Questions</label>
+            <select id="ai-count">
+              <option value="3">3 Questions</option>
+              <option value="5" selected>5 Questions</option>
+              <option value="10">10 Questions</option>
+              <option value="15">15 Questions</option>
+              <option value="20">20 Questions</option>
+            </select>
+          </div>
+
+          <div class="input-group">
+            <label for="ai-marks">Marks per Question</label>
+            <select id="ai-marks">
+              <option value="1" selected>1 Mark</option>
+              <option value="2">2 Marks</option>
+              <option value="mixed">Mixed (1 &amp; 2)</option>
+            </select>
+          </div>
+
+          <div class="input-group" style="grid-column: 1 / -1;">
+            <label for="ai-extra-instructions">Additional Instructions (Optional)</label>
+            <textarea id="ai-extra-instructions" rows="2" placeholder="e.g. Focus on GATE PYQ style, include code snippets, avoid very short options..."></textarea>
+          </div>
+        </div>
+
+        <!-- Status / Progress area -->
+        <div class="ai-status-bar" id="ai-status-bar" style="display:none;">
+          <div class="ai-spinner"></div>
+          <span id="ai-status-text">Generating questions with Gemini AI...</span>
+        </div>
+      </div>
+
+      <div class="modal-footer-actions">
+        <button type="button" class="action-btn secondary-btn" id="btn-cancel-aimodal">Cancel</button>
+        <button type="button" class="action-btn ai-generate-btn" id="btn-run-ai-generate">
+          <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+          Generate Questions
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
+
+
+
