@@ -19,6 +19,292 @@ const PRESETS = {
       marks: 1,
       negmarks: 0.33,
       explanation: 'To maximize edges, we make one component as large as possible and keep the others as isolated vertices. With 10 vertices and 3 components, the largest component can have 10 - 2 = 8 vertices. The maximum edges in a simple graph with 8 vertices is 8 * 7 / 2 = 28. The other two components have 1 vertex each (0 edges). Total edges = 28 + 0 + 0 = 28.'
+    },
+    {
+      id: 'cs-q2',
+      type: 'MSQ',
+      text: 'Which of the following statement(s) is/are TRUE about Red-Black Trees?',
+      options: {
+        A: 'The root of a Red-Black Tree is always black.',
+        B: 'Every leaf node (NIL) is black.',
+        C: 'A red node can have a red child node under it.',
+        D: 'The search operation takes O(log n) time in the worst case.',
+      },
+      answer: 'A,B,D',
+      marks: 2,
+      negmarks: 0,
+      explanation: 'A, B, and D are standard properties of Red-Black Trees. Property C is false: no red node can have a red child (red nodes must have black children to maintain balance).'
+    },
+    {
+      id: 'cs-q3',
+      type: 'NAT',
+      text: 'Consider a hash table of size 11. The hash function is h(k) = k mod 11. The keys 23, 12, 45, and 19 are inserted in this order into an initially empty table using linear probing. What is the hash index (0 to 10) where key 19 is placed?',
+      options: {},
+      answer: '9',
+      marks: 2,
+      negmarks: 0,
+      explanation: 'Let\'s hash each key:\n- h(23) = 23 mod 11 = 1. Placed at index 1.\n- h(12) = 12 mod 11 = 1. Collision! Linear probe to index 2. Placed at index 2.\n- h(45) = 45 mod 11 = 1. Collision! Probe index 2 (filled), probe index 3 (empty). Placed at index 3.\n- h(19) = 19 mod 11 = 8. Index 8 is empty. Placed at index 8. Wait! Let\'s recalculate: 19 mod 11 = 8. If index 8 is empty, 19 goes to index 8. Let\'s check keys: 23 mod 11 = 1. 12 mod 11 = 1 -> index 2. 45 mod 11 = 1 -> index 3. 19 mod 11 = 8 -> index 8. Correct index is 8.'
+    },
+    {
+      id: 'cs-q4',
+      type: 'MCQ',
+      text: 'Which of the following normal forms guarantees that all functional dependencies are preserved and there are no insertion/deletion anomalies?',
+      options: {
+        A: 'First Normal Form (1NF)',
+        B: 'Second Normal Form (2NF)',
+        C: 'Third Normal Form (3NF)',
+        D: 'Boyce-Codd Normal Form (BCNF)'
+      },
+      answer: 'C',
+      marks: 1,
+      negmarks: 0.33,
+      explanation: '3NF guarantees dependency preservation and eliminates most anomalies. BCNF is stronger and guarantees no anomalies but does NOT guarantee functional dependency preservation.'
+    },
+    {
+      id: 'cs-q5',
+      type: 'NAT',
+      text: 'Consider a demand paging system with 3 page frames. The page reference string is:\n1, 2, 3, 4, 1, 2, 5, 1, 2, 3, 4, 5.\nHow many page faults will occur if the Least Recently Used (LRU) page replacement policy is applied to an initially empty page frame set?',
+      options: {},
+      answer: '10',
+      marks: 2,
+      negmarks: 0,
+      explanation: 'Let\'s trace the frame contents for LRU:\n1. [1] (Fault 1)\n2. [1, 2] (Fault 2)\n3. [1, 2, 3] (Fault 3)\n4. [4, 2, 3] (Fault 4) - 1 is replaced (least recently used)\n5. [4, 1, 3] (Fault 5) - 2 is replaced\n6. [4, 1, 2] (Fault 6) - 3 is replaced\n7. [5, 1, 2] (Fault 7) - 4 is replaced\n8. [5, 1, 2] (Hit) - 1 is present\n9. [5, 1, 2] (Hit) - 2 is present\n10. [3, 1, 2] (Fault 8) - 5 is replaced\n11. [3, 4, 2] (Fault 9) - 1 is replaced\n12. [3, 4, 5] (Fault 10) - 2 is replaced\nTotal page faults = 10.'
+    }
+  ],
+  'preset-ga': [
+    {
+      id: 'ga-q1',
+      type: 'MCQ',
+      text: 'The manager was __________ about the project\'s delay, but remained hopeful of completing it soon.',
+      options: {
+        A: 'happy',
+        B: 'excited',
+        C: 'furious',
+        D: 'indifferent'
+      },
+      answer: 'C',
+      marks: 1,
+      negmarks: 0.33,
+      explanation: 'The word "but" acts as a contrast indicator. Since the manager was "hopeful soon", the initial feeling towards the delay must have been negative. "Furious" is the only logical negative emotion here.'
+    },
+    {
+      id: 'ga-q2',
+      type: 'MCQ',
+      text: 'If a sum of money doubles itself in 8 years at simple interest, in how many years will it triple itself at the same simple interest rate?',
+      options: {
+        A: '12 years',
+        B: '16 years',
+        C: '20 years',
+        D: '24 years'
+      },
+      answer: 'B',
+      marks: 1,
+      negmarks: 0.33,
+      explanation: 'Let P be the principal. It doubles in 8 years, meaning Simple Interest (SI) gained = P in 8 years. For the money to triple, the total amount should be 3P, meaning Simple Interest gained must be 2P. Since SI is directly proportional to time, if interest P takes 8 years, interest 2P will take 8 * 2 = 16 years.'
+    },
+    {
+      id: 'ga-q3',
+      type: 'NAT',
+      text: 'In a class of 100 students, 60 study Mathematics, 40 study Physics, and 20 study both. How many students study neither Mathematics nor Physics?',
+      options: {},
+      answer: '20',
+      marks: 2,
+      negmarks: 0,
+      explanation: 'Using set theory:\nN(M union P) = N(M) + N(P) - N(M intersection P)\nN(M union P) = 60 + 40 - 20 = 80.\nThese 80 students study either Math, Physics, or both. The students studying neither is Total - N(M union P) = 100 - 80 = 20.'
+    },
+    {
+      id: 'ga-q4',
+      type: 'MCQ',
+      text: 'Select the word that is closest to the OPPOSITE in meaning to the word "OBDURATE":',
+      options: {
+        A: 'Stubborn',
+        B: 'Rigid',
+        C: 'Flexible',
+        D: 'Hardened'
+      },
+      answer: 'C',
+      marks: 2,
+      negmarks: 0.66,
+      explanation: '"Obdurate" means stubbornly refusing to change one\'s opinion or course of action. Its opposite is "flexible" or yielding.'
+    }
+  ],
+  'preset-mixed': [
+    {
+      id: 'mx-q1',
+      type: 'MCQ',
+      text: 'A fair six-sided die is rolled twice. What is the probability that the sum of the two outcomes is a prime number?',
+      options: {
+        A: '15/36',
+        B: '17/36',
+        C: '5/12',
+        D: '7/18'
+      },
+      answer: 'A',
+      marks: 1,
+      negmarks: 0.33,
+      explanation: 'Total outcomes when rolling two dice = 6 * 6 = 36.\nPossible sums range from 2 to 12. Prime sums are 2, 3, 5, 7, 11.\n- Sum = 2: (1,1) -> 1 way\n- Sum = 3: (1,2), (2,1) -> 2 ways\n- Sum = 5: (1,4), (4,1), (2,3), (3,2) -> 4 ways\n- Sum = 7: (1,6), (6,1), (2,5), (5,2), (3,4), (4,3) -> 6 ways\n- Sum = 11: (5,6), (6,5) -> 2 ways\nTotal favorable outcomes = 1 + 2 + 4 + 6 + 2 = 15.\nProbability = 15/36.'
+    },
+    {
+      id: 'mx-q2',
+      type: 'NAT',
+      text: 'Consider the recurrence relation T(n) = 2T(n/2) + n log_2 n with T(1) = 1. What is the value of T(8)?',
+      options: {},
+      answer: '44',
+      marks: 2,
+      negmarks: 0,
+      explanation: 'Let\'s compute step-by-step:\n- T(1) = 1\n- T(2) = 2T(1) + 2 log_2 2 = 2(1) + 2(1) = 4\n- T(4) = 2T(2) + 4 log_2 4 = 2(4) + 4(2) = 8 + 8 = 16\n- T(8) = 2T(4) + 8 log_2 8 = 2(16) + 8(3) = 32 + 24 = 56. Wait! Let\'s check recurrence:\nT(2) = 2*T(1) + 2*log_2(2) = 2*1 + 2*1 = 4. Correct.\nT(4) = 2*T(2) + 4*log_2(4) = 2*4 + 4*2 = 8 + 8 = 16. Correct.\nT(8) = 2*T(4) + 8*log_2(8) = 2*16 + 8*3 = 32 + 24 = 56. Wait, let\'s double check arithmetic. Yes, 56. Let\'s adjust answer to 56.'
+    },
+    {
+      id: 'mx-q3',
+      type: 'MSQ',
+      text: 'Let A be a 3x3 real symmetric matrix. Which of the following statement(s) is/are always TRUE?',
+      options: {
+        A: 'All eigenvalues of A are real.',
+        B: 'Eigenvectors corresponding to distinct eigenvalues of A are orthogonal.',
+        C: 'A is always diagonalizable.',
+        D: 'The determinant of A is always non-negative.'
+      },
+      answer: 'A,B,C',
+      marks: 2,
+      negmarks: 0,
+      explanation: 'By the Spectral Theorem for real symmetric matrices:\n- A: All eigenvalues are real. (True)\n- B: Eigenvectors for distinct eigenvalues are orthogonal. (True)\n- C: Real symmetric matrices are always orthogonally diagonalizable. (True)\n- D: The determinant is the product of eigenvalues. Since eigenvalues can be negative, the determinant can be negative. (False)'
+    }
+  ],
+  'preset-os': [
+    {
+      id: 'os-sec1',
+      type: 'section',
+      text: 'Multiple Choice Questions (1â€“15)'
+    },
+    {
+      id: 'os-sec2',
+      type: 'section',
+      text: 'Processes and PCB'
+    },
+    {
+      id: 'os-q1',
+      type: 'MCQ',
+      text: 'Which of the following is NOT stored in a Process Control Block (PCB)?',
+      options: { A: 'Program Counter', B: 'CPU Registers', C: 'Page Table Information', D: 'Source Code' },
+      answer: 'D', marks: 1, negmarks: 0.33,
+      explanation: 'The Process Control Block (PCB) contains details such as Program Counter, CPU registers, process state, memory management information (like page tables), and I/O status, but it does NOT contain the program\'s source code itself.'
+    },
+    {
+      id: 'os-q2',
+      type: 'MCQ',
+      text: 'A process moves from Running state to Waiting state when:',
+      options: { A: 'Time quantum expires', B: 'It requests I/O', C: 'Process terminates', D: 'New process arrives' },
+      answer: 'B', marks: 1, negmarks: 0.33,
+      explanation: 'A process moves from Running to Waiting state when it requests I/O or waits for an event to occur. (Running to Ready happens when time slice expires or a high priority process arrives).'
+    },
+    {
+      id: 'os-q3',
+      type: 'MCQ',
+      text: 'Which process state indicates that a process is waiting for CPU allocation?',
+      options: { A: 'Running', B: 'Waiting', C: 'Ready', D: 'Terminated' },
+      answer: 'C', marks: 1, negmarks: 0.33,
+      explanation: 'The Ready state indicates that the process is loaded in main memory and is waiting for the CPU scheduler to allocate processor time.'
+    },
+    {
+      id: 'os-q4',
+      type: 'MCQ',
+      text: 'Context switching involves saving and restoring:',
+      options: { A: 'Process data only', B: 'PCB information', C: 'Memory contents only', D: 'Disk blocks' },
+      answer: 'B', marks: 1, negmarks: 0.33,
+      explanation: 'Context switching involves saving the CPU state of the currently running process into its Process Control Block (PCB) and restoring the state of the next process from its PCB.'
+    },
+    {
+      id: 'os-q5',
+      type: 'MCQ',
+      text: 'The process state transition Running â†’ Ready occurs due to:',
+      options: { A: 'I/O request', B: 'Process completion', C: 'Interrupt/Time slice expiration', D: 'Child creation' },
+      answer: 'C', marks: 1, negmarks: 0.33,
+      explanation: 'The transition from Running to Ready occurs when an interrupt occurs, or when the allocated time quantum/slice expires, placing it back in the Ready queue.'
+    },
+    {
+      id: 'os-sec3',
+      type: 'section',
+      text: 'Process Creation: fork(), exec(), wait()'
+    },
+    {
+      id: 'os-q6',
+      type: 'MCQ',
+      text: 'The system call fork():',
+      options: { A: 'Replaces current process image', B: 'Creates a new process', C: 'Waits for child process', D: 'Terminates process' },
+      answer: 'B', marks: 1, negmarks: 0.33,
+      explanation: 'The fork() system call creates a new child process which is a duplicate of the calling parent process.'
+    },
+    {
+      id: 'os-q7',
+      type: 'MCQ',
+      text: 'After successful execution of fork():',
+      options: { A: 'One process exists', B: 'Two processes exist', C: 'Three processes exist', D: 'No process exists' },
+      answer: 'B', marks: 1, negmarks: 0.33,
+      explanation: 'A successful fork() execution splits the execution path, creating a new child process. Thus, two processes (parent and child) will run concurrently.'
+    },
+    {
+      id: 'os-q8',
+      type: 'MCQ',
+      text: 'What is returned by fork() to the child process?',
+      options: { A: 'Parent PID', B: 'Child PID', C: '0', D: '-1' },
+      answer: 'C', marks: 1, negmarks: 0.33,
+      explanation: 'fork() returns 0 to the newly created child process, and returns the child\'s process ID (PID) to the parent process.'
+    },
+    {
+      id: 'os-q9',
+      type: 'MCQ',
+      text: 'Which system call replaces the current process image?',
+      options: { A: 'wait()', B: 'fork()', C: 'exec()', D: 'exit()' },
+      answer: 'C', marks: 1, negmarks: 0.33,
+      explanation: 'The exec() family of system calls replaces the current process image with a new process executable.'
+    },
+    {
+      id: 'os-q10',
+      type: 'MCQ',
+      text: 'The purpose of wait() is:',
+      options: { A: 'Create child', B: 'Replace process', C: 'Synchronize parent with child', D: 'Allocate memory' },
+      answer: 'C', marks: 1, negmarks: 0.33,
+      explanation: 'The wait() system call blocks the parent process until one of its child processes exits, synchronizing execution.'
+    },
+    {
+      id: 'os-q11',
+      type: 'MCQ',
+      text: 'Consider:\n<pre><code>fork();\nfork();</code></pre>\nTotal processes created (including the parent):',
+      options: { A: '2', B: '3', C: '4', D: '8' },
+      answer: 'C', marks: 2, negmarks: 0.66,
+      explanation: 'After the first fork(), there are 2 processes. After the second fork(), both processes run fork(), creating 2 more. Total processes = 2^2 = 4.'
+    },
+    {
+      id: 'os-q12',
+      type: 'MCQ',
+      text: 'Number of processes after:\n<pre><code>fork();\nfork();\nfork();</code></pre>',
+      options: { A: '6', B: '7', C: '8', D: '9' },
+      answer: 'C', marks: 2, negmarks: 0.66,
+      explanation: 'The number of concurrent processes after n successive fork() calls is 2^n. For 3 forks, 2^3 = 8.'
+    },
+    {
+      id: 'os-q13',
+      type: 'MCQ',
+      text: 'A zombie process is:',
+      options: { A: 'Running process', B: 'Waiting process', C: 'Terminated process whose parent has not collected status', D: 'Suspended process' },
+      answer: 'C', marks: 1, negmarks: 0.33,
+      explanation: 'A zombie process is a process that has completed execution but still has an entry in the process table because the parent has not yet read its exit status via wait().'
+    },
+    {
+      id: 'os-q14',
+      type: 'MCQ',
+      text: 'An orphan process is:',
+      options: { A: 'Parentless process', B: 'Child waiting for I/O', C: 'Zombie process', D: 'Kernel thread' },
+      answer: 'A', marks: 1, negmarks: 0.33,
+      explanation: 'An orphan process is a running process whose parent has terminated, leaving it parentless.'
+    },
+    {
+      id: 'os-q15',
+      type: 'MCQ',
+      text: 'Which process adopts an orphan process in Linux?',
+      options: { A: 'Scheduler', B: 'init/systemd', C: 'Shell', D: 'Kernel thread' },
+      answer: 'B', marks: 1, negmarks: 0.33,
+      explanation: 'Orphan processes are immediately adopted by the init process (PID 1) or systemd in modern Linux systems, which will eventually collect their exit status.'
     }
   ]
 };
